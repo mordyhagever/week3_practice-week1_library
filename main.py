@@ -39,7 +39,7 @@ Choose an option:
     """)
     choose = input()
     while not choose_checker(choose):
-        choose = input("Enter a valid number from the menu")
+        choose = input("Enter a valid number from the menu: ")
     choose = int(choose)
     return choose
 
@@ -50,7 +50,7 @@ def activator():
         if choice == 1:
             active1()
         if choice == 2:
-            book_name = input("Enter book name")
+            book_name = input("Enter book name: ")
             active2(book_name)
         if choice == 3:
             b_name = input("Enter book name: ")

@@ -15,10 +15,13 @@ def search_book(name):
     if not str_check(name):
         return "name or author are empty"
     loads = get_json()
+    part_search = []
     for book in loads:
-        if book["name"] == name:
-            return book
-    return None
+        if name in book["name"]:
+            part_search.append(book)
+    if part_search:
+        return part_search
+    return "Book has not found"
 
 def add_book(name, author, year):
     if not str_check(name) or not str_check(author):

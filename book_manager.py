@@ -37,7 +37,7 @@ def add_book(name, author, year):
     new_book["name"] = name
     new_book["author"] = author
     new_book["year"] = year
-    new_book["available"] = True
+    new_book["available"] = "True"
     add_to_json(new_book)
     return "added successfully"
 

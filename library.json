@@ -46,6 +46,13 @@
     "name": "Hell",
     "author": "Mordy",
     "year": 2005,
-    "available": true
+    "available": "True"
+  },
+  {
+    "id": 8,
+    "name": "Worlds",
+    "author": "Me",
+    "year": 1999,
+    "available": "False"
   }
 ]

@@ -12,7 +12,7 @@ def active4(book_id):
 def active5(book_id):
     print(return_book(book_id))
 def active6():
-    print(display_books())
+    print(get_available_books())
 def active7(author):
     print(get_book_by_author(author))
 

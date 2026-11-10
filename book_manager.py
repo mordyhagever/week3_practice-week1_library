@@ -1,17 +1,21 @@
 from data_base import books
 from validations import *
+from json_dealer import *
 def display_books():
-    return books
+    loads = get_json()
+    return loads
 
 
 def get_next_book_id():
-    last_book = books[-1]
+    loads = get_json()
+    last_book = loads[-1]
     return last_book["id"] + 1
 
 def search_book(name):
     if not str_check(name):
         return "name or author are empty"
-    for book in books:
+    loads = get_json()
+    for book in loads:
         if book["name"] == name:
             return book
     return None
@@ -31,7 +35,7 @@ def add_book(name, author, year):
     new_book["author"] = author
     new_book["year"] = year
     new_book["available"] = True
-    books.append(new_book)
+    add_to_json(new_book)
     return "added successfully"
 
 
@@ -41,10 +45,12 @@ def borrow_book(book_id):
     if not check_if_borrowed(book_id):
         return "books is already borrowed"
     book_id = int(book_id)
-    for book in books:
+    loads = get_json()
+    for book in loads:
         if book["id"] == book_id:
-            book["available"] = False
-            return "book had been borrowed"
+            book["available"] = "False"
+            update_json(loads)
+            return "book has been borrowed"
     return "ERROR, couldn't find the book"
 
 def return_book(book_id):
@@ -53,22 +59,26 @@ def return_book(book_id):
     if check_if_borrowed(book_id):
         return "book is already in library"
     book_id = int(book_id)
-    for book in books:
+    loads = get_json()
+    for book in loads:
         if book["id"] == book_id:
-            book["available"] = True
+            book["available"] = "True"
+            update_json(loads)
             return "book had been returned"
     return "ERROR, couldn't find the book"
 
 
 def get_available_books():
     available = []
-    for book in books:
-        if book["available"]:
+    loads = get_json()
+    for book in loads:
+        if book["available"] == "True":
             available.append(book)
     return available
 
 def get_book_by_author(author):
-    for book in books:
+    loads = get_json()
+    for book in loads:
         if book["author"] == author:
             return book
     return "ERROR book has not found"

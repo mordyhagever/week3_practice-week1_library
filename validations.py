@@ -1,4 +1,5 @@
 from data_base import books
+from json_dealer import *
 def is_int(num):
     try:
         num = int(num)
@@ -28,7 +29,8 @@ def check_year_published(year):
     return True
 
 def check_existence(name, author):
-    for book in books:
+    loads = get_json()
+    for book in loads:
         if book["name"] == name and book["author"] == author:
             return False
     return True
@@ -36,7 +38,8 @@ def check_existence(name, author):
 def check_if_id_exist(book_id):
     if is_int(book_id):
         book_id = int(book_id)
-    for book in books:
+    loads = get_json()
+    for book in loads:
         if book["id"] == book_id:
             return True
     return False
@@ -44,9 +47,10 @@ def check_if_id_exist(book_id):
 def check_if_borrowed(book_id):
     if is_int(book_id):
         book_id = int(book_id)
-    for book in books:
+    loads = get_json()
+    for book in loads:
         if book["id"] == book_id:
-            if not book["available"]:
+            if book["available"] == "False":
                 return False
     return True
 
